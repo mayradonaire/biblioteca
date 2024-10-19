@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BIBLIOTECA ALUMNOS MARISTAS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="diseño.css">
+    
+
+</head>
+<body>
+  <main>
+      <form id="accountForm">
+          <label for="accountNumber">Ingrese su número de cuenta:</label>
+          <input type="text" id="accountNumber" name="accountNumber" placeholder="Número de cuenta" required>
+          <button type="submit">Enviar</button>
+      </form>
+      <div id="message"></div>
+
+      <button id="viewHistoryButton">Ver Historial</button>
+
+      <!-- Modal para ingresar el PIN -->
+      <div id="pinModal" class="modal" style="display: none;">
+          <div class="modal-content">
+              <span class="close">&times;</span>
+              <h2>Ingrese el PIN para ver el historial</h2>
+              <input type="password" id="pinInput" placeholder="PIN">
+              <button id="submitPin">Aceptar</button>
+              <div id="pinMessage"></div>
+          </div>
+      </div>
+  </main>
+      
+      <script src="basededatos2.js"></script>
+      <script src="libreria.js"></script>
+</body>
+</html>

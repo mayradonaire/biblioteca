@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Historial de Accesos</title>
+    <link rel="stylesheet" href="historial.css"> <!-- Vincula el archivo CSS -->
+</head>
+<body>
+    <header>
+        <h1>Historial de Accesos</h1>
+    </header>
+
+    <main>
+        <h2>Tu Historial</h2>
+        <ul id="historyList"></ul>
+        <button onclick="window.location.href='index.html'">Volver</button> <!-- Botón para volver -->
+        <button id="clearHistoryButton">Eliminar Historial</button> <!-- Botón para eliminar el historial -->
+    </main>
+
+    <script>
+        // Cargar el historial desde localStorage
+        const historyList = document.getElementById('historyList');
+        const historial = JSON.parse(localStorage.getItem('historial')) || [];
+
+        // Mostrar el historial en la lista
+        function mostrarHistorial() {
+            historyList.innerHTML = ''; // Limpiar la lista previa
+
+            if (historial.length > 0) {
+                historial.forEach(entry => {
+                    const li = document.createElement('li');
+                    li.textContent = `${entry.Fecha} - Cuenta: ${entry.Cuenta}, Nombre: ${entry.NombreCompleto}`;
+                    historyList.appendChild(li);
+                });
+            } else {
+                const li = document.createElement('li');
+                li.textContent = 'No hay historial disponible.';
+                historyList.appendChild(li);
+            }
+        }
+
+        // Función para eliminar el historial
+        document.getElementById('clearHistoryButton').addEventListener('click', () => {
+            if (confirm("¿Estás seguro de que quieres eliminar todo el historial?")) {
+                localStorage.removeItem('historial'); // Eliminar el historial del localStorage
+                mostrarHistorial(); // Actualizar la lista en la interfaz inmediatamente
+            }
+        });
+
+        mostrarHistorial(); // Mostrar historial al cargar la página
+    </script>
+</body>
+</html>

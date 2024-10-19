@@ -1,0 +1,182 @@
+/* Importar la fuente Roboto */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+/* Estilos generales para el body */
+body {
+  margin: 0;
+  padding: 0;
+  /* Reemplaza la URL de abajo con la URL de tu imagen de fondo */
+  background-image: url('https://images.unsplash.com/photo-1512820790803-83ca734da794');
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+  font-family: 'Roboto', sans-serif;
+  display: flex;
+  flex-direction: column;
+  color: #ffffff;
+}
+
+/* Estilos para el encabezado */
+header {
+  background: rgba(0, 0, 0, 0.5); /* Fondo semi-transparente */
+  padding: 20px;
+  width: 100%;
+  text-align: center;
+}
+
+h1 {
+  margin: 0;
+  font-size: 3em;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+}
+
+/* Estilos para el formulario y el historial */
+main {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+  text-align: center;
+  max-width: 500px;
+  width: 90%;
+  color: #333333;
+  margin: 20px auto;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+label {
+  margin-bottom: 10px;
+  font-size: 1.2em;
+}
+
+input[type="text"], input[type="password"] {
+  padding: 10px;
+  font-size: 1em;
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+button {
+  padding: 10px;
+  font-size: 1em;
+  background-color: #007BFF;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+#message, #pinMessage {
+  margin-top: 15px;
+  font-size: 1em;
+}
+
+/* Estilos para el botón de ver historial */
+#viewHistoryButton {
+  margin-top: 20px;
+  background-color: #28a745;
+}
+
+#viewHistoryButton:hover {
+  background-color: #1e7e34;
+}
+
+/* Estilos para el historial */
+#historySection {
+  margin-top: 30px;
+  text-align: left;
+}
+
+#historySection.hidden {
+  display: none;
+}
+
+#historySection h2 {
+  margin-bottom: 10px;
+  color: #007BFF;
+}
+
+#historyList {
+  list-style-type: none;
+  padding: 0;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+#historyList li {
+  background: #f2f2f2;
+  color: #333333;
+  padding: 10px;
+  margin-bottom: 5px;
+  border-radius: 5px;
+  font-size: 0.9em;
+}
+
+/* Estilos para el Modal */
+.modal {
+  display: none; /* Oculto por defecto */
+  position: fixed; /* Fijo en la pantalla */
+  z-index: 1; /* Por encima de otros elementos */
+  left: 0;
+  top: 0;
+  width: 100%; /* Ancho completo */
+  height: 100%; /* Alto completo */
+  overflow: auto; /* Habilitar scroll si es necesario */
+  background-color: rgba(0,0,0,0.4); /* Fondo semi-transparente */
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% desde arriba y centrado horizontalmente */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Ancho del modal */
+  max-width: 400px;
+  border-radius: 10px;
+  text-align: center;
+  color: #333333;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+}
+
+.modal-content h2 {
+  margin-top: 0;
+}
+
+.modal-content button {
+  margin-top: 10px;
+}
+
+/* Responsividad */
+@media (max-width: 600px) {
+  h1 {
+    font-size: 2em;
+  }
+
+  .modal-content {
+    width: 90%;
+  }
+}

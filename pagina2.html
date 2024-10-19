@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Libro de Clases</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #4a4a4a;
+            margin-bottom: 20px;
+            font-size: 2.5em;
+        }
+
+        #librosContainer {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        #librosContainer img {
+            margin: 15px;
+            width: 150px; /* Ajusta el tamaño según sea necesario */
+            height: auto;
+            border: 2px solid #007BFF; /* Borde azul */
+            border-radius: 10px; /* Bordes redondeados */
+            transition: transform 0.2s, box-shadow 0.2s; /* Transición suave para el efecto hover */
+        }
+
+        #librosContainer img:hover {
+            transform: scale(1.1); /* Aumenta ligeramente el tamaño de la imagen al pasar el mouse */
+            box-shadow: 0 4px 15px rgba(0, 123, 255, 0.5); /* Sombra al pasar el mouse */
+        }
+
+        .mensaje {
+            margin: 20px 0;
+            font-size: 1.2em;
+            color: #ff0000; /* Color rojo para mensajes de error */
+        }
+
+        footer {
+            margin-top: 30px;
+            font-size: 0.9em;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+    <h1>Libro de Clases</h1>
+    <div id="librosContainer"></div>
+    <div class="mensaje" id="mensajeNoLibros"></div>
+
+    <footer>
+        &copy; 2024 - Todos los derechos reservados
+    </footer>
+
+    <script>
+        // Simulación de la base de datos de cuentas y sus tipos
+        const cuentas = {
+            '7MO012401': 'ABBY CECILIA OSORTO RAMOS',
+            '7MO012402': 'ALEXANDRA ISABEL ARGEÑAL ULLOA',
+            '8VO012401': 'NOMBRE 8VO',
+            '9NO012401': 'NOMBRE 9NO',
+            '1AEB012401': 'NOMBRE 10 AEB',
+            '2AEB012401': 'NOMBRE 11 AEB',
+            '3AEB012401': 'NOMBRE 12 AEB',
+            '1INF012401': 'NOMBRE 1 INF',
+            '2INF012401': 'NOMBRE 2 INF',
+            '1BCH012401': 'NOMBRE 1 BCH',
+            '2BCH012401': 'NOMBRE 2 BCH'
+            // Agrega más cuentas según sea necesario
+        };
+
+        // Simulación de los libros por curso
+        const librosPorCurso = {
+            '7MO': ['libro7mo1.jpg', 'libro7mo2.jpg'], // Rutas de las imágenes para 7MO
+            '8VO': ['libro8vo1.jpg', 'libro8vo2.jpg'], // Rutas de las imágenes para 8VO
+            '9NO': ['libro9no1.jpg', 'libro9no2.jpg'], // Rutas de las imágenes para 9NO
+            '1AEB': ['libro10aeb1.jpg', 'libro10aeb2.jpg'], // Rutas de las imágenes para 10 AEB
+            '2AEB': ['libro11aeb1.jpg', 'libro11aeb2.jpg'], // Rutas de las imágenes para 11 AEB
+            '3AEB': ['libro12aeb1.jpg', 'libro12aeb2.jpg'], // Rutas de las imágenes para 12 AEB
+            '1INF': ['libro1inf1.jpg', 'libro1inf2.jpg'], // Rutas de las imágenes para 1 INF
+            '2INF': ['libro2inf1.jpg', 'libro2inf2.jpg'], // Rutas de las imágenes para 2 INF
+            '1BCH': ['libro1bch1.jpg', 'libro1bch2.jpg'], // Rutas de las imágenes para 1 BCH
+            '2BCH': ['libro2bch1.jpg', 'libro2bch2.jpg'] // Rutas de las imágenes para 2 BCH
+        };
+
+        // Función para obtener el tipo de cuenta
+        function obtenerTipoDeCuenta(cuenta) {
+            if (cuenta.startsWith('7MO')) return '7MO';
+            if (cuenta.startsWith('8VO')) return '8VO';
+            if (cuenta.startsWith('9NO')) return '9NO';
+            if (cuenta.startsWith('1AEB')) return '1AEB';
+            if (cuenta.startsWith('2AEB')) return '2AEB';
+            if (cuenta.startsWith('3AEB')) return '3AEB';
+            if (cuenta.startsWith('1INF')) return '1INF';
+            if (cuenta.startsWith('2INF')) return '2INF';
+            if (cuenta.startsWith('1BCH')) return '1BCH';
+            if (cuenta.startsWith('2BCH')) return '2BCH';
+            return null;
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const accountNumber = '7MO012401'; // Simulación del número de cuenta; aquí deberías obtenerlo del almacenamiento local o de otra fuente
+            const tipoDeCuenta = obtenerTipoDeCuenta(accountNumber); // Llama a la función que obtiene el tipo de cuenta
+
+            const librosContainer = document.getElementById('librosContainer');
+            const mensajeNoLibros = document.getElementById('mensajeNoLibros');
+
+            if (tipoDeCuenta) {
+                const libros = librosPorCurso[tipoDeCuenta]; // Obtiene los libros del tipo de cuenta
+                if (libros) {
+                    libros.forEach((libro, index) => {
+                        const img = document.createElement('img');
+                        img.src = libro; // Asigna la ruta de la imagen
+                        img.alt = `Libro ${index + 1}`; // Texto alternativo para la imagen
+                        img.style.cursor = 'pointer'; // Cambia el cursor al pasar sobre la imagen
+                        img.addEventListener('click', function() {
+                            // Redirigir a la página de Santillana al hacer clic en la imagen
+                            window.open('https://www.santillana.com', '_blank'); // Abre la página en una nueva pestaña
+                        });
+                        librosContainer.appendChild(img); // Agrega la imagen al contenedor
+                    });
+                } else {
+                    mensajeNoLibros.textContent = 'No hay libros disponibles para esta cuenta.';
+                }
+            } else {
+                mensajeNoLibros.textContent = 'Tipo de cuenta no reconocido.';
+            }
+        });
+    </script>
+</body>
+</html>
